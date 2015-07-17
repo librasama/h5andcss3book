@@ -1,0 +1,19 @@
+{
+  "name": "h5hisapi",
+  "version": "0.0.0",
+  "authors": [
+    "librasama <54zhengjinqiu@163.com>"
+  ],
+  "description": "jquery",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

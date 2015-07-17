@@ -1,0 +1,29 @@
+extends fuck_layout
+blcok myhead
+	script(type='text/javascript' src='../javascripts/edit.js')
+block content
+	section
+		h1 用户信息一览表
+		.infoTable
+			table#datatable
+				tr
+					th 用户ID
+					th 用户类型
+					th 用户姓名
+					th(width='50px') &nbsp;
+				+rows(users)
+	section#sectionDetail
+
+mixin rows(uses)
+	- each user in users
+		tr
+		- var uid = user.uid;
+		- var uname = user.uname;
+			td=uid
+				if user.type == 0
+					td 管理员
+				else
+					td 普通用户
+				td=uname
+				td(wiwdth='50px')
+					input(type='button' value='详细' id='btnDetail' onclick='btnDetail_onclick(this, '+ uid +')')

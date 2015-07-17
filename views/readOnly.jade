@@ -1,0 +1,15 @@
+extends fuck_layout
+block content
+	header#dive_head_title_big
+	h1=title
+	form#form1
+		include component/ulgrid
+		- var user = {name:'www', birthday:'2222-22-22', pwd:'1234', phone:'111111111', telephone:'1231231231', fax:'02223352343', addr:'南开区XX路', email:'aki@gmail.com', type:'0'};
+		- var type = '管理员';
+		if(user.type != 0)
+			type = '普通用户'
+
+		+rows([[{'name': '用户姓名', 'val': user.name}, {'name': '出生年月', 'val': user.birthday}, {'name': '密码', 'val': user.pwd}],
+			[{'name': '住宅电话', 'val': user.phone}, {'name': '移动电话', 'val': user.telephone}, {'name': '传真', 'val': user.fax}],
+			[{'name': '住址', 'val': user.addr}, {'name': 'Email', 'val': user.email}, {'name': '用户类型', 'val': type}]]
+				, 'name', 'val')

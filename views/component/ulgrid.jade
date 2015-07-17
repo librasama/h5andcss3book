@@ -1,0 +1,18 @@
+mixin cell(i, label, val)
+	li(id= 'title_' + i)
+		label #{label}
+	li(id= 'content_' + i)
+		label=val
+
+mixin cols(s, arr, labelField, valField)
+	li
+		ul
+			each obj,i in arr
+				+cell(s + i, obj[labelField], obj[valField])
+
+mixin rows(arrs, labelField, valField)
+	ul
+		- var pos = 1;
+		each d, i in arrs
+			+cols(pos, d, labelField, valField)
+			- pos += d.length;

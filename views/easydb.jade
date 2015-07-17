@@ -1,0 +1,26 @@
+extends fuck_layout
+block myhead
+	script(type='text/javascript' src='../javascripts/easydb.js')
+block content
+	h1=title
+	table
+		+line('姓名', 'id')
+		+line('Email', 'email')
+		+line('电话号码', 'tel')
+		+line('备注', 'memo')
+		tr
+			td
+			td
+				input(type='button' value='保存' id='saveBtn')
+	hr
+	p 检索
+		input(type='text' id='find')
+		input(type='button' value='检索' id='findBtn')
+	p#msg
+	p#tips
+mixin line(desc, id)
+	tr
+		td=desc
+		td
+			input(type='text' id=id)
+

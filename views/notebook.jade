@@ -1,0 +1,11 @@
+extends fuck_layout
+block myhead
+	script(type='text/javascript' src='../javascripts/notebook.js')
+block content
+	h1=title
+	textarea#memo(cols='60' rows='10')
+	br
+	input(type='button' value='追加' id='appendBtn')
+	input(type='button' value='初始化' id='initBtn')
+	hr
+	p#msg

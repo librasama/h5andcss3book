@@ -1,0 +1,67 @@
+extends fuck_layout
+block myhead
+	script(type='text/javascript' src='../javascripts/edit.js')
+block content
+	h1=title
+	- var user = {name:'www', birthday:'2222-22-22', pwd:'1234', phone:'111111111', mobile:'1231231231', zip:'02223352343', addr:'南开区XX路', email:'aki@gmail.com', type:'0'};
+	form#form1
+	ul
+		li
+			ul
+				li#title_1
+					span *
+					label(for='txtUsername') 用户姓名
+				li#content_1
+					input(type='text' id='txtUsername' name='UserName' maxlength='8' placeholder='请输入用户名' autofocus required value=user.uname)
+				li#title_2
+					span *
+					lable(for='txtBirthday') 出生年月
+				li#content_2
+					input(type='text' id='txtBirthday' name='Birthday' maxlength='10' required= value=user.birthday)
+				li#title_3
+					span *
+					label(for='txtPassword') 密码
+				li#content_3
+					input(type='text' id='txtPassword' name='Password' maxlength='12' placeholder='必须输入密码' required value=user.pwd)
+			ul
+				li#title_4
+					span *
+					label(for='txtPhone') 住宅电话
+				li#content_4
+					input(type='text' id='txtPhone' name='Phone' maxlength='20' value=user.phone)
+				li#title_5
+					span *
+					label(for='txtMobile') 移动电话
+				li#content_5
+					input(type='text' id='txtMobile' name='Mobile' maxlength='20' value=user.mobile)
+				li#title_6
+					span *
+					label(for='txtZip') 传真
+				li#content_6
+					input(type='text' id='txtZip' name='Zip' maxlength='6' value=user.phone)
+			ul
+				li#title_7
+					span *
+					label(for='txtAddr') 住址
+				li#content_7
+					input(type='text' id='txtAddr' name='Addr' maxlength='100' value=user.addr)
+				li#title_8
+					span *
+					label(for='txtEmail') Email
+				li#content_8
+					input(type='text' id='txtEmail' name='Email' maxlength='20' value=user.email)
+				li#title_9
+					span *
+					label(for='selectUserType') 用户类型
+				li#content_9
+					select(id='selectUserType' name='UserType')
+						if (type=='0')
+							option(value='0' selected)
+							option(value='1')
+						else
+							option(value='0')
+							option(value='1' selected)
+
+	#buttonDiv
+		input(type='button' name='btnSave' id='btnSave' value='保存' onclick='btnSave_onclick();')
+		input(type='button' name='btnClear' id='btnClear' value='清除' onclick='btnClear_onclick();')
