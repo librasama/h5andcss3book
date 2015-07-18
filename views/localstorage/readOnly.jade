@@ -1,9 +1,9 @@
-extends fuck_layout
+extends ../fuck_layout
 block content
 	header#dive_head_title_big
 	h1=title
 	form#form1
-		include component/ulgrid
+		include ../component/ulgrid
 		- var user = {name:'www', birthday:'2222-22-22', pwd:'1234', phone:'111111111', telephone:'1231231231', fax:'02223352343', addr:'南开区XX路', email:'aki@gmail.com', type:'0'};
 		- var type = '管理员';
 		if(user.type != 0)
