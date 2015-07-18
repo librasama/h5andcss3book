@@ -182,5 +182,67 @@ function howMuchToRead(n, state) {
     if(state.length === 0 && state.ended) {
         return 0;
     }
+    if(state.objectMode)
+        return n === 0?0:1;
+    if(util.isNull(n) || isNaN(n)) {
+        // only flow one buffer at a time
+        if(state.flowing && state.buffer.length)
+            return state.buffer[0].length;
+        else
+            return state.length;
+    }
+    if(n<0)
+        return 0;
+
+    // If we're asking for more than the target buffer level, then raise the water mark. Bump up the the next highest power of 2,
+    // to prevent increasing it excessively in tiny amounts.
+    if(n > state.highWaterMark) {
+        state.highWaterMark = roundUpToNextPowerOf2(n);
+    }
+    //don't have that much. return null, unless we've ended.
+    if(n > state.length) {
+        if(!state.ended) {
+            state.needReadable = true;
+            return 0;
+        } else {
+            return state.length;
+        }
+    }
+    return n;
 }
+
+MyReadable.prototype.read = function(n) {
+    debug('debug', n);
+    var state = this._readableState;
+    var n0rig = n;
+
+    if(!util.isNumber(n) || n >0) {
+        state.emittedReadable = false;
+    }
+
+    // if we're doing read(0) to trigger a readable event, but we already have a bunch of data in the buffer, then just trigger the
+    // 'readable' event and move on.
+    if(n ===0 && state.needReadable && (state.length >= state.highWaterMark || state.ended)) {
+        debug('read: emitReadable', state.length, state.ended);
+        if(state.length === 0 && state.ended) {
+            endReadable(this);
+        } else {
+            emitReadable(this);
+        }
+        return null;
+    }
+    n = howMuchToRead(n, state);
+
+    // if we've ended, and we're now clear, the finish it up.
+    if(n === 0 && state.ended) {
+        if(state.length ===0) {
+            endReadable(this);
+        }
+        return null;
+    }
+
+    //真正开始读取咯~！
+
+}
+
 
