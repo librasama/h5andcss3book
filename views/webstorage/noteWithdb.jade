@@ -1,0 +1,21 @@
+extends ../fuck_layout
+block myhead
+	script(type='text/javascript' src='../javascripts/noteWithdb.js')
+block content
+	h1=title
+	table
+		tr
+			td 姓名
+			td
+				input(type='text' id='name')
+		tr
+			td 留言
+			td
+				input(type='text' id='memo')
+		tr
+			td
+			td
+				input(type='button' id='saveBtn' value='保存')
+	hr
+	table(id='datatable' border='1')
+	p#msg
